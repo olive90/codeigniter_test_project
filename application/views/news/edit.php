@@ -1,28 +1,57 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<h2><?php  echo $title; ?></h2>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
 
-<?php echo validation_errors(); ?>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title text-center">
+						<?php echo $title; ?>
+					</h3>
+				</div>
+				<div class="panel-body text-center">
 
-<?php echo form_open('news/edit/'.$news_item['student_id']); ?>
+			<?php echo validation_errors(); ?>
 
-<table>
-	<tr>
-		<td><label for="name">Student Name</label></td>
-		<td><input type="text" name="name" size="50" value="<?php echo $news_item['name'] ?>"></td>
-	</tr>
-	<tr>
-		<td><label for="phone_number">Phone Number</label></td>
-		<td><input type="text" name="phone_number" size="50" value="<?php echo $news_item['phone_number'] ?>"></td>
-	</tr>
-	<tr>
-		<td><label for="email">Email Address</label></td>
-		<td><input type="text" name="email" size="50" value="<?php echo $news_item['email'] ?>"></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><input type="submit" name="submit" value="Update"></td>
-	</tr>
-</table>
+			<?php echo form_open('news/edit/'.$news_item['student_id'], 'class="form-horizontal" role="form"'); ?>
 
-<?php echo form_close(); ?>
+				<div class="form-group">
+					 
+					<label for="student_name" class="col-sm-3 control-label">
+						Student Name
+					</label>
+					<div class="col-sm-6">
+						<input type="text" name="name" class="form-control" value="<?php echo $news_item['name'] ?>" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					 
+					<label for="phone_number" class="col-sm-3 control-label">
+						Phone Number
+					</label>
+					<div class="col-sm-6">
+						<input type="text" name="phone_number" class="form-control" value="<?php echo $news_item['phone_number'] ?>" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					 
+					<label for="email" class="col-sm-3 control-label">
+						Email Address
+					</label>
+					<div class="col-sm-6">
+						<input type="email" name="email" class="form-control" value="<?php echo $news_item['email'] ?>" />
+					</div>
+				</div>
+
+				<input type="submit" name="submit" value="Update" class="btn btn-primary" style="width:150px;">
+
+			<?php echo form_close(); ?>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

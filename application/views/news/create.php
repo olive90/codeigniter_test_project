@@ -1,24 +1,57 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<h2><?php echo $title; ?></h2>
 
-<?php echo validation_errors(); ?>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
 
-<?php echo form_open('news/create'); ?>
-<table>
-	<tr>
-		<td><label for="name">Student Name</label></td>
-		<td><input type="text" name="name" size="50"></td>
-	</tr>
-	<tr>
-		<td><label for="phone_number">Phone Number</label></td>
-		<td><input type="text" name="phone_number" size="50"></td>
-	</tr>
-	<tr>
-		<td><label for="email">Email Address</label></td>
-		<td><input type="text" name="email" size="50"></td>
-	</tr>
-	<td></td>
-	<td><input type="submit" name="submit" value="Save"></td>
-</table>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title text-center">
+						<?php echo $title; ?>
+					</h3>
+				</div>
+				<div class="panel-body text-center">
 
-<?php echo form_close(); ?>
+			<?php echo validation_errors(); ?>
+
+			<?php echo form_open('news/create', 'class="form-horizontal" role="form"'); ?>
+
+				<div class="form-group">
+					 
+					<label for="student_name" class="col-sm-3 control-label">
+						Student Name
+					</label>
+					<div class="col-sm-6">
+						<input type="text" name="name" class="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					 
+					<label for="phone_number" class="col-sm-3 control-label">
+						Phone Number
+					</label>
+					<div class="col-sm-6">
+						<input type="text" name="phone_number" class="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					 
+					<label for="email" class="col-sm-3 control-label">
+						Email Address
+					</label>
+					<div class="col-sm-6">
+						<input type="email" name="email" class="form-control" />
+					</div>
+				</div>
+
+				<input type="submit" name="submit" value="Save" class="btn btn-primary" style="width:150px;">
+
+			<?php echo form_close(); ?>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

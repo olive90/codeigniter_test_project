@@ -1,30 +1,35 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-Class News extends CI_Controller{
+Class News extends CI_Controller
+{
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->model('news_model');
 		$this->load->helper('url_helper');
 	}
 
-	public function index(){
+	public function index()
+	{
 		$data['news'] = $this->news_model->get_news();
-		$data['title'] = 'News Archieve';
+		$data['title'] = 'Student Records';
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('news/index', $data);
 		$this->load->view('templates/footer');
 	}
 
-	public function view($email = NULL){
+	public function view($email = NULL)
+	{
 		$data['news_item'] = $this->news_model->get_news($email);
 
-		if(empty($data['news_item'])){
+		if(empty($data['news_item']))
+		{
 			show_404();
 		}
-		$data['name'] = $data['news_item']['name'];
+		$data['email'] = $data['news_item']['email'];
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('news/view', $data);
@@ -32,7 +37,8 @@ Class News extends CI_Controller{
 
 	}
 
-	public function create(){
+	public function create()
+	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -42,13 +48,16 @@ Class News extends CI_Controller{
 		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 
-		if($this->form_validation->run() === FALSE){
+		if($this->form_validation->run() === FALSE)
+		{
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('news/create');
 			$this->load->view('templates/footer');
 
-		}else{
+		}
+		else
+		{
 
 			$this->news_model->set_news();
 			$this->load->view('templates/header', $data);
@@ -58,10 +67,13 @@ Class News extends CI_Controller{
 		}
 	}
 
-	public function edit(){
-		$id = $this->uri->segment(2);
+	public function edit($id = 0)
+	{
+		$id = $this->uri->segment(3);
+		//$id = $this->input->post['student_id'];
 
-		if(empty($id)){
+		if(empty($id))
+		{
 			show_404();
 		}
 
@@ -79,15 +91,19 @@ Class News extends CI_Controller{
 			$this->load->view('templates/header', $data);
 			$this->load->view('news/edit', $data);
 			$this->load->view('templates/footer');
-		}else{
+		}
+		else
+		{
 			$this->news_model->set_news($id);
 			redirect(base_url().'index.php/news');
 		}
 	}
 
-	public function delete(){
+	public function delete()
+	{
 		$id = $this->uri->segment(3);
-		if(empty($id)){
+		if(empty($id))
+		{
 			show_404();
 		}
 
